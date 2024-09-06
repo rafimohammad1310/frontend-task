@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this to your global CSS or Tailwind configuration */
+
+.task {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9;
+  margin-bottom: 1rem;
+}
+
+.status-options {
+  margin-top: 10px;
+}
+/* Add any custom styles needed for the Kanban board */
+
+
+/* Add any additional styling for premium look */
+
+.status-options button {
+  margin-right: 5px;
+}
+
+.task-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: white) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
