@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 
 interface DropdownProps {
   options: Array<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>; 
-  selectedOption: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; 
+  
   onSelect: (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; 
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options,onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
@@ -19,9 +19,9 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption, onSelect }
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 bg-gray-100 rounded-md focus:outline-none"
+        className="w-10 h-10 p-2 bg-grey-100 rounded-md focus:outline-none"
       >
-        <span className="mr-2">{selectedOption}</span> {/* Display selected option */}
+        <span className="mr-2"></span> 
         <svg
           className="w-4 h-4"
           xmlns="http://www.w3.org/2000/svg"

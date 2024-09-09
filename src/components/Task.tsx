@@ -65,7 +65,7 @@ const Task: React.FC<TaskProps> = ({ task, onDelete, onStatusChange }) => {
       <div className="absolute top-2 right-2 flex items-center space-x-2">
         <Dropdown
           options={['TODO', 'IN_PROGRESS', 'COMPLETED']}
-          selectedOption={task.status}
+        
           onSelect={handleStatusSelect}
         />
       </div>
