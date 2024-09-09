@@ -23,12 +23,18 @@ const KanbanBoard = () => {
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'tasks'), (querySnapshot) => {
-      const tasksList: Task[] = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() as Task }));
+      const tasksList: Task[] = querySnapshot.docs.map(doc => {
+        const data = doc.data() as Task;
+        return {
+          id: doc.id,
+          ...data
+        };
+      });
       setTasks(tasksList);
     });
     return () => unsubscribe();
   }, []);
-
+  
   const handleAddTask = async (task: Task) => {
     try {
       const docRef = await addDoc(collection(db, 'tasks'), task);
