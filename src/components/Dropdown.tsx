@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 
 interface DropdownProps {
-  options: string[];
-  onSelect: (option: string) => void;
+  options: Array<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>; // Specific literals
+  onSelect: (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; // Specific literals
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleSelect = (option: string) => {
+  const handleSelect = (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
     onSelect(option);
     setIsOpen(false);
   };

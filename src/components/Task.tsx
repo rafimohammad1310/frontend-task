@@ -7,24 +7,22 @@ interface TaskProps {
     title: string;
     description: string;
     date: string;
-    status: string;
-    priority: string;
+    status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; // Specific literals
+    priority: 'HIGH' | 'MEDIUM' | 'LOW'; // Specific literals
   };
   onDelete: (taskId: string) => void;
-  onStatusChange: (taskId: string, newStatus: string) => void;
+  onStatusChange: (taskId: string, newStatus: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; // Specific literals
 }
 
-const priorityColors: { [key: string]: string } = {
+const priorityColors: { [key in 'HIGH' | 'MEDIUM' | 'LOW']: string } = {
   HIGH: 'bg-red-500',
   MEDIUM: 'bg-yellow-500',
   LOW: 'bg-green-500',
 };
 
 const Task: React.FC<TaskProps> = ({ task, onDelete, onStatusChange }) => {
-  const handleStatusSelect = (status: string) => {
-    if (status !== 'Change Status') {
-      onStatusChange(task.id, status);
-    }
+  const handleStatusSelect = (status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
+    onStatusChange(task.id, status);
   };
 
   return (
