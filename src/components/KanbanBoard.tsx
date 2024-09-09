@@ -5,7 +5,7 @@ import { collection, addDoc, updateDoc, doc, deleteDoc, onSnapshot } from 'fireb
 import { db } from '../lib/firebaseConfig';
 import TaskForm from './TaskForm';
 import Task from './Task';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
 // Define a type for the task object
 interface Task {
@@ -24,7 +24,7 @@ const KanbanBoard = () => {
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'tasks'), (querySnapshot) => {
       const tasksList: Task[] = querySnapshot.docs.map(doc => {
-        const data = doc.data() as Task;
+        const data = doc.data() as Omit<Task, 'id'>; // Exclude 'id' from the type
         return {
           id: doc.id,
           ...data
@@ -66,7 +66,7 @@ const KanbanBoard = () => {
     }
   };
 
-  const onDragEnd = async (result:  DropResult) => {
+  const onDragEnd = async (result: DropResult) => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return;
@@ -190,4 +190,3 @@ const KanbanBoard = () => {
 };
 
 export default KanbanBoard;
-
