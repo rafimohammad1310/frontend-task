@@ -35,10 +35,10 @@ const KanbanBoard = () => {
     return () => unsubscribe();
   }, []);
   
-  const handleAddTask = async (task: Task) => {
+  const handleAddTask = async (task: Omit<Task, 'id'>) => { // Exclude 'id' here too
     try {
       const docRef = await addDoc(collection(db, 'tasks'), task);
-      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]);
+      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]); // Ensure no duplicate 'id'
     } catch (error) {
       console.error('Error adding task: ', error);
     }
