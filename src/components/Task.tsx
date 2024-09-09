@@ -7,11 +7,11 @@ interface TaskProps {
     title: string;
     description: string;
     date: string;
-    status: "TODO" | "IN_PROGRESS" | "COMPLETED";
-    priority: "HIGH" | "MEDIUM" | "LOW";
+    status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED';
+    priority: 'HIGH' | 'MEDIUM' | 'LOW';
   };
   onDelete: (taskId: string) => void;
-  onStatusChange: (taskId: string, newStatus: "TODO" | "IN_PROGRESS" | "COMPLETED") => void;
+  onStatusChange: (taskId: string, newStatus: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void;
 }
 
 const priorityColors: { [key in TaskProps['task']['priority']]: string } = {
@@ -21,7 +21,7 @@ const priorityColors: { [key in TaskProps['task']['priority']]: string } = {
 };
 
 const Task: React.FC<TaskProps> = ({ task, onDelete, onStatusChange }) => {
-  const handleStatusSelect = (status: "TODO" | "IN_PROGRESS" | "COMPLETED") => {
+  const handleStatusSelect = (status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
     if (status !== 'Change Status') {
       onStatusChange(task.id, status);
     }
