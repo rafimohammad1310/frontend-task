@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+
 module.exports = {
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -8,14 +8,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background': '#f0f0f0', // Example color, adjust as needed
-        'foreground': '#333', // Example color, adjust as needed
-        'primary': '#1d4ed8', // Blue
-        'secondary': '#9333ea', // Purple
-        'accent': '#f59e0b', // Yellow
-        'high': '#f87171', // Red
-        'medium': '#fbbf24', // Yellow
-        'low': '#34d399', // Green
+        'background': '#f0f0f0', 
+        'foreground': '#333', 
+        'primary': '#1d4ed8', 
+        'secondary': '#9333ea', 
+        'accent': '#f59e0b', 
+        'high': '#f87171', 
+        'medium': '#fbbf24', 
+        'low': '#34d399', 
       },
       spacing: {
         '72': '18rem',
