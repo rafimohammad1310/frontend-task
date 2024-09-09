@@ -21,6 +21,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption, onSelect }
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 bg-gray-100 rounded-md focus:outline-none"
       >
+        <span className="mr-2">{selectedOption}</span> {/* Display selected option */}
         <svg
           className="w-4 h-4"
           xmlns="http://www.w3.org/2000/svg"
