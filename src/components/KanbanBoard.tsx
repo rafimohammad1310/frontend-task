@@ -60,7 +60,7 @@ const KanbanBoard = () => {
     }
   };
 
-  const onDragEnd = async (result: any) => {
+  const onDragEnd = async (result:  DropResult) => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return;
@@ -184,3 +184,4 @@ const KanbanBoard = () => {
 };
 
 export default KanbanBoard;
+
