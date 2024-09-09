@@ -7,19 +7,29 @@ import TaskForm from './TaskForm';
 import Task from './Task';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+// Define a type for the task object
+interface Task {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED';
+  priority: string;
+}
+
 const KanbanBoard = () => {
-  const [tasks, setTasks] = useState<any[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'tasks'), (querySnapshot) => {
-      const tasksList = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const tasksList: Task[] = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() as Task }));
       setTasks(tasksList);
     });
     return () => unsubscribe();
   }, []);
 
-  const handleAddTask = async (task: { title: string; description: string; date: string; status: string; priority: string }) => {
+  const handleAddTask = async (task: Task) => {
     try {
       const docRef = await addDoc(collection(db, 'tasks'), task);
       setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]);
@@ -28,7 +38,7 @@ const KanbanBoard = () => {
     }
   };
 
-  const handleStatusChange = async (taskId: string, newStatus: string) => {
+  const handleStatusChange = async (taskId: string, newStatus: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
     try {
       await updateDoc(doc(db, 'tasks', taskId), { status: newStatus });
       setTasks(prevTasks => 
@@ -56,7 +66,7 @@ const KanbanBoard = () => {
     if (!destination) return;
 
     if (destination.droppableId !== source.droppableId) {
-      const newStatus = destination.droppableId;
+      const newStatus = destination.droppableId as 'TODO' | 'IN_PROGRESS' | 'COMPLETED';
       await handleStatusChange(draggableId, newStatus);
     }
   };

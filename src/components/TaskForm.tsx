@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 interface TaskFormProps {
-  onAddTask: (task: { title: string; description: string; date: string; status: string; priority: string }) => void;
+  onAddTask: (task: { title: string; description: string; date: string; status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; priority: 'Low' | 'Medium' | 'High' }) => void;
   onClose: () => void;
 }
 
@@ -10,8 +10,8 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
-  const [status, setStatus] = useState('TODO');
-  const [priority, setPriority] = useState('Low');
+  const [status, setStatus] = useState<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>('TODO');
+  const [priority, setPriority] = useState<'Low' | 'Medium' | 'High'>('Low');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,7 +68,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
             <select
               id="status"
               value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              onChange={(e) => setStatus(e.target.value as 'TODO' | 'IN_PROGRESS' | 'COMPLETED')}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
             >
               <option value="TODO">TODO</option>
@@ -81,7 +81,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
             <select
               id="priority"
               value={priority}
-              onChange={(e) => setPriority(e.target.value)}
+              onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
             >
               <option value="Low">Low</option>
