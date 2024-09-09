@@ -34,14 +34,15 @@ const KanbanBoard = () => {
     return () => unsubscribe();
   }, []);
   
-  const handleAddTask = async (task: Omit<Task, 'id'>) => { 
+  const handleAddTask = async (task: { title: string; description: string; date: string; status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; priority: 'LOW' | 'MEDIUM' | 'HIGH' }) => {
     try {
       const docRef = await addDoc(collection(db, 'tasks'), task);
-      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]); 
+      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]);
     } catch (error) {
       console.error('Error adding task: ', error);
     }
   };
+  
 
   const handleStatusChange = async (taskId: string, newStatus: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
     try {

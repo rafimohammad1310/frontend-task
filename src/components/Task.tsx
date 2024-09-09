@@ -22,9 +22,9 @@ const priorityColors: { [key in TaskProps['task']['priority']]: string } = {
 
 const Task: React.FC<TaskProps> = ({ task, onDelete, onStatusChange }) => {
   const handleStatusSelect = (status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
-    if (status !== 'Change Status') {
+   
       onStatusChange(task.id, status);
-    }
+    
   };
 
   return (

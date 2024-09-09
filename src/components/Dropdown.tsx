@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 interface DropdownProps {
   options: Array<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>; 
+  selectedOption: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; 
   onSelect: (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; 
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {
+const Dropdown: React.FC<DropdownProps> = ({ options, selectedOption, onSelect }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleSelect = (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {

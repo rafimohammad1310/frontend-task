@@ -1,8 +1,7 @@
-'use client';
 import React, { useState } from 'react';
 
 interface TaskFormProps {
-  onAddTask: (task: { title: string; description: string; date: string; status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; priority: 'Low' | 'Medium' | 'High' }) => void;
+  onAddTask: (task: { title: string; description: string; date: string; status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; priority: 'LOW' | 'MEDIUM' | 'HIGH' }) => void;
   onClose: () => void;
 }
 
@@ -11,7 +10,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
   const [description, setDescription] = useState('');
   const [date, setDate] = useState('');
   const [status, setStatus] = useState<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>('TODO');
-  const [priority, setPriority] = useState<'Low' | 'Medium' | 'High'>('Low');
+  const [priority, setPriority] = useState<'LOW' | 'MEDIUM' | 'HIGH'>('LOW');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +21,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
       setDescription('');
       setDate('');
       setStatus('TODO');
-      setPriority('Low');
+      setPriority('LOW');
       onClose();
     }
   };
@@ -81,12 +80,12 @@ const TaskForm: React.FC<TaskFormProps> = ({ onAddTask, onClose }) => {
             <select
               id="priority"
               value={priority}
-              onChange={(e) => setPriority(e.target.value as 'Low' | 'Medium' | 'High')}
+              onChange={(e) => setPriority(e.target.value as 'LOW' | 'MEDIUM' | 'HIGH')}
               className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
             >
-              <option value="Low">Low</option>
-              <option value="Medium">Medium</option>
-              <option value="High">High</option>
+              <option value="LOW">Low</option>
+              <option value="MEDIUM">Medium</option>
+              <option value="HIGH">High</option>
             </select>
           </div>
           <div className="flex justify-end">
