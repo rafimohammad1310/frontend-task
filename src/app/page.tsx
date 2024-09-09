@@ -1,5 +1,5 @@
 import React from 'react';
-import KanbanBoard from 'C:/Users/rafim/kanban-board/src/components/KanbanBoard'; // Adjust the path as needed
+import KanbanBoard from 'src/components/KanbanBoard';
 
 const Page: React.FC = () => {
   return (
