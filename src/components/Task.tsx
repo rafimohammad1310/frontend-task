@@ -7,28 +7,30 @@ interface TaskProps {
     title: string;
     description: string;
     date: string;
-    status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED'; // Specific literals
-    priority: 'HIGH' | 'MEDIUM' | 'LOW'; // Specific literals
+    status: "TODO" | "IN_PROGRESS" | "COMPLETED";
+    priority: "HIGH" | "MEDIUM" | "LOW";
   };
   onDelete: (taskId: string) => void;
-  onStatusChange: (taskId: string, newStatus: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; // Specific literals
+  onStatusChange: (taskId: string, newStatus: "TODO" | "IN_PROGRESS" | "COMPLETED") => void;
 }
 
-const priorityColors: { [key in 'HIGH' | 'MEDIUM' | 'LOW']: string } = {
+const priorityColors: { [key in TaskProps['task']['priority']]: string } = {
   HIGH: 'bg-red-500',
   MEDIUM: 'bg-yellow-500',
   LOW: 'bg-green-500',
 };
 
 const Task: React.FC<TaskProps> = ({ task, onDelete, onStatusChange }) => {
-  const handleStatusSelect = (status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => {
-    onStatusChange(task.id, status);
+  const handleStatusSelect = (status: "TODO" | "IN_PROGRESS" | "COMPLETED") => {
+    if (status !== 'Change Status') {
+      onStatusChange(task.id, status);
+    }
   };
 
   return (
     <div className="relative flex flex-col bg-white border border-grey-200 rounded-lg shadow-lg mb-4 p-9">
       <div
-        className={`absolute top-2 left-3 px-2 py-1 text-xs font-semibold text-white ${priorityColors[task.priority] || 'bg-red-500'} rounded-full`}
+        className={`absolute top-2 left-3 px-2 py-1 text-xs font-semibold text-white ${priorityColors[task.priority]} rounded-full`}
       >
         {task.priority}
       </div>

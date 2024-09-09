@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 interface DropdownProps {
-  options: Array<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>; // Specific literals
-  onSelect: (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; // Specific literals
+  options: Array<'TODO' | 'IN_PROGRESS' | 'COMPLETED'>; 
+  onSelect: (option: 'TODO' | 'IN_PROGRESS' | 'COMPLETED') => void; 
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onSelect }) => {

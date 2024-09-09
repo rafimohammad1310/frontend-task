@@ -7,14 +7,13 @@ import TaskForm from './TaskForm';
 import Task from './Task';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 
-// Define a type for the task object
 interface Task {
   id: string;
   title: string;
   description: string;
   date: string;
   status: 'TODO' | 'IN_PROGRESS' | 'COMPLETED';
-  priority: string;
+  priority: 'HIGH' | 'MEDIUM' | 'LOW';
 }
 
 const KanbanBoard = () => {
@@ -24,7 +23,7 @@ const KanbanBoard = () => {
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, 'tasks'), (querySnapshot) => {
       const tasksList: Task[] = querySnapshot.docs.map(doc => {
-        const data = doc.data() as Omit<Task, 'id'>; // Exclude 'id' from the type
+        const data = doc.data() as Omit<Task, 'id'>;
         return {
           id: doc.id,
           ...data
@@ -35,10 +34,10 @@ const KanbanBoard = () => {
     return () => unsubscribe();
   }, []);
   
-  const handleAddTask = async (task: Omit<Task, 'id'>) => { // Exclude 'id' here too
+  const handleAddTask = async (task: Omit<Task, 'id'>) => { 
     try {
       const docRef = await addDoc(collection(db, 'tasks'), task);
-      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]); // Ensure no duplicate 'id'
+      setTasks(prevTasks => [...prevTasks, { id: docRef.id, ...task }]); 
     } catch (error) {
       console.error('Error adding task: ', error);
     }
